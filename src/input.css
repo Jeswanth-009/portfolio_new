@@ -1,0 +1,433 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .card-hover {
+    transition: all 0.3s ease;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Modal Styles */
+  .modal-container {
+    transform: scale(0.95);
+    transition: all 0.3s ease;
+  }
+
+  .modal-header-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: inherit;
+    backdrop-filter: blur(12px);
+  }
+
+  .modal-content-scroll {
+    max-height: calc(90vh - 100px);
+    overflow-y: auto;
+  }
+
+  /* Brand Cards */
+  .linkedin-brand-card {
+    background: linear-gradient(135deg, #0077b5 0%, #00a0dc 100%);
+    border-radius: 1rem;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .linkedin-brand-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px rgba(0, 119, 181, 0.3);
+  }
+
+  .linkedin-icon-wrapper {
+    width: 3rem;
+    height: 3rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hackerrank-brand-card {
+    background: linear-gradient(135deg, #2ec866 0%, #00d4aa 100%);
+    border-radius: 1rem;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hackerrank-brand-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px rgba(46, 200, 102, 0.3);
+  }
+
+  .hackerrank-icon-wrapper {
+    width: 3rem;
+    height: 3rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .infosys-brand-card {
+    background: linear-gradient(135deg, #007cc3 0%, #00a8e6 100%);
+    border-radius: 1rem;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .infosys-icon-wrapper {
+    width: 3rem;
+    height: 3rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .google-brand-card {
+    background: linear-gradient(135deg, #4285f4 0%, #34a853 50%, #ea4335 100%);
+    border-radius: 1rem;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Certification Cards */
+  .cert-container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cert-scroll-enhanced {
+    overflow-x: auto;
+    padding: 1rem 0;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(99, 102, 241, 0.3) transparent;
+  }
+
+  .cert-scroll-enhanced::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .cert-scroll-enhanced::-webkit-scrollbar-track {
+    background: rgba(51, 65, 85, 0.3);
+    border-radius: 10px;
+  }
+
+  .cert-scroll-enhanced::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    border-radius: 10px;
+  }
+
+  .cert-grid {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0.5rem;
+    min-width: max-content;
+  }
+
+  .cert-card-premium {
+    min-width: 300px;
+    background: rgba(30, 41, 59, 0.5);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(51, 65, 85, 0.7);
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .cert-card-premium:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(99, 102, 241, 0.5);
+  }
+
+  .cert-header {
+    padding: 1rem;
+    position: relative;
+  }
+
+  .linkedin-gradient {
+    background: linear-gradient(135deg, rgba(0, 119, 181, 0.1) 0%, rgba(0, 160, 220, 0.1) 100%);
+  }
+
+  .hackerrank-gradient {
+    background: linear-gradient(135deg, rgba(46, 200, 102, 0.1) 0%, rgba(0, 212, 170, 0.1) 100%);
+  }
+
+  .infosys-gradient {
+    background: linear-gradient(135deg, rgba(0, 124, 195, 0.1) 0%, rgba(0, 168, 230, 0.1) 100%);
+  }
+
+  .cert-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(34, 197, 94, 0.1);
+    color: #22c55e;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1px solid rgba(34, 197, 94, 0.2);
+  }
+
+  .cert-content {
+    padding: 1.5rem;
+  }
+
+  .cert-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .linkedin-bg {
+    background: rgba(0, 119, 181, 0.1);
+    border: 1px solid rgba(0, 119, 181, 0.2);
+  }
+
+  .hackerrank-bg {
+    background: rgba(46, 200, 102, 0.1);
+    border: 1px solid rgba(46, 200, 102, 0.2);
+  }
+
+  .cert-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .cert-subtitle {
+    color: #94a3b8;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+  }
+
+  .cert-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .cert-date {
+    color: #64748b;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .linkedin-hover:hover {
+    border-color: rgba(0, 119, 181, 0.5);
+    box-shadow: 0 20px 40px rgba(0, 119, 181, 0.2);
+  }
+
+  .hackerrank-hover:hover {
+    border-color: rgba(46, 200, 102, 0.5);
+    box-shadow: 0 20px 40px rgba(46, 200, 102, 0.2);
+  }
+
+  .infosys-hover:hover {
+    border-color: rgba(0, 124, 195, 0.5);
+    box-shadow: 0 20px 40px rgba(0, 124, 195, 0.2);
+  }
+
+  /* Glow Effects */
+  .linkedin-glow::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+
+  .linkedin-brand-card:hover .linkedin-glow::before {
+    left: 100%;
+  }
+
+  .hackerrank-glow::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+
+  .hackerrank-brand-card:hover .hackerrank-glow::before {
+    left: 100%;
+  }
+
+  .infosys-glow::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+
+  .infosys-brand-card:hover .infosys-glow::before {
+    left: 100%;
+  }
+
+  /* Skills Section */
+  .skill-item {
+    transition: all 0.3s ease;
+  }
+
+  .skill-bar {
+    position: relative;
+    overflow: hidden;
+    width: 0%;
+    transition: width 2s ease-in-out;
+  }
+
+  .skill-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    animation: shimmer 2s infinite;
+  }
+
+  .skill-bar.animate {
+    animation: pulse-glow 2s ease-in-out;
+  }
+
+  .skill-item:hover .skill-bar {
+    transform: scaleY(1.1);
+    transition: transform 0.2s ease;
+  }
+
+  /* Different colors for skill bars with glow */
+  .skill-bar[data-width="95"],
+  .skill-bar[data-width="90"] {
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
+  }
+
+  .skill-bar[data-width="85"],
+  .skill-bar[data-width="80"] {
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+  }
+
+  .skill-bar[data-width="75"],
+  .skill-bar[data-width="70"],
+  .skill-bar[data-width="65"] {
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out;
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out;
+  }
+
+  .bg-gradient-brand {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .shadow-glow {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+  }
+
+  .shadow-glow-lg {
+    box-shadow: 0 0 40px rgba(99, 102, 241, 0.4);
+  }
+
+  .shadow-card-hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(99, 102, 241, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.6), 0 0 30px rgba(99, 102, 241, 0.3);
+  }
+}
