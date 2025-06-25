@@ -62,22 +62,34 @@ function initializeNavigation() {
 
 // Mobile menu toggle function
 function toggleMobileMenu() {
-    const mobileMenu = document.getElementById('mobile-menu');
-    const menuIcon = document.querySelector('#mobile-menu-button i');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuButton = document.querySelector('button[onclick="toggleMobileMenu()"] i');
     
-    if (mobileMenu && menuIcon) {
-        mobileMenu.classList.toggle('hidden');
+    if (mobileMenu) {
+        const isHidden = mobileMenu.classList.contains('-translate-y-full');
         
-        // Toggle icon
-        if (mobileMenu.classList.contains('hidden')) {
-            menuIcon.setAttribute('data-lucide', 'menu');
+        if (isHidden) {
+            // Show menu
+            mobileMenu.classList.remove('-translate-y-full', 'opacity-0');
+            mobileMenu.classList.add('translate-y-0', 'opacity-100');
         } else {
-            menuIcon.setAttribute('data-lucide', 'x');
+            // Hide menu
+            mobileMenu.classList.remove('translate-y-0', 'opacity-100');
+            mobileMenu.classList.add('-translate-y-full', 'opacity-0');
         }
         
-        // Reinitialize icons
-        if (typeof lucide !== 'undefined') {
-            lucide.createIcons();
+        // Toggle icon
+        if (menuButton) {
+            if (isHidden) {
+                menuButton.setAttribute('data-lucide', 'x');
+            } else {
+                menuButton.setAttribute('data-lucide', 'menu');
+            }
+            
+            // Reinitialize icons
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
         }
     }
 }
