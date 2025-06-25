@@ -380,6 +380,64 @@
   .skill-bar[data-width="65"] {
     box-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
   }
+
+  /* 3D Project Card Animations */
+  .project-card-3d {
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+    perspective: 1000px;
+  }
+  
+  .project-card-3d:hover {
+    transform: rotateY(10deg) rotateX(5deg) scale(1.02);
+  }
+  
+  .project-card-3d .project-content {
+    transform-style: preserve-3d;
+    transition: all 0.4s ease;
+  }
+  
+  .project-card-3d:hover .project-content {
+    transform: translateZ(20px);
+  }
+  
+  .project-card-3d .project-image {
+    transition: transform 0.4s ease;
+  }
+  
+  .project-card-3d:hover .project-image {
+    transform: translateZ(30px) rotateY(-5deg);
+  }
+  
+  .project-card-3d .project-tech-tags {
+    transition: transform 0.4s ease;
+  }
+  
+  .project-card-3d:hover .project-tech-tags {
+    transform: translateZ(15px);
+  }
+  
+  /* Enhance card hover with subtle shadow and glow */
+  .project-card-3d:hover {
+    box-shadow: 
+      0 25px 50px -12px rgba(0, 0, 0, 0.5),
+      0 0 40px rgba(99, 102, 241, 0.1);
+  }
+  
+  /* Mobile optimization - reduce 3D effects on smaller screens */
+  @media (max-width: 768px) {
+    .project-card-3d:hover {
+      transform: rotateY(5deg) rotateX(2deg) scale(1.01);
+    }
+    
+    .project-card-3d:hover .project-content {
+      transform: translateZ(10px);
+    }
+    
+    .project-card-3d:hover .project-image {
+      transform: translateZ(15px) rotateY(-2deg);
+    }
+  }
 }
 
 @layer utilities {
