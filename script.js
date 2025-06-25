@@ -137,9 +137,20 @@ function initializeSkillsAnimation() {
     const skillItems = document.querySelectorAll('.skill-item');
     const skillBars = document.querySelectorAll('.skill-bar');
     
+    // Different settings for mobile vs desktop
+    const isMobile = window.innerWidth <= 768;
+    const observerOptions = {
+        threshold: isMobile ? 0.1 : 0.3, // Lower threshold for mobile
+        rootMargin: isMobile ? '0px 0px -20px 0px' : '0px 0px -50px 0px' // Less aggressive margin for mobile
+    };
+    
+    let animatedItems = new Set(); // Track already animated items
+    
     const skillsObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
+            if (entry.isIntersecting && !animatedItems.has(entry.target)) {
+                animatedItems.add(entry.target);
+                
                 // Animate skill item appearance
                 setTimeout(() => {
                     entry.target.classList.add('animate');
@@ -154,14 +165,39 @@ function initializeSkillsAnimation() {
                         skillBar.classList.add('animate');
                     }, index * 100 + 200);
                 }
-                
-                skillsObserver.unobserve(entry.target);
             }
         });
-    }, {
-        threshold: 0.3,
-        rootMargin: '0px 0px -50px 0px'
-    });
+    }, observerOptions);
+    
+    // For mobile, also add a scroll-based fallback
+    if (isMobile) {
+        let scrollTimeout;
+        const handleScroll = () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                skillItems.forEach((item, index) => {
+                    if (!animatedItems.has(item)) {
+                        const rect = item.getBoundingClientRect();
+                        const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                        
+                        if (isVisible) {
+                            animatedItems.add(item);
+                            item.classList.add('animate');
+                            
+                            const skillBar = item.querySelector('.skill-bar');
+                            if (skillBar) {
+                                const targetWidth = skillBar.getAttribute('data-width');
+                                skillBar.style.width = targetWidth + '%';
+                                skillBar.classList.add('animate');
+                            }
+                        }
+                    }
+                });
+            }, 100);
+        };
+        
+        window.addEventListener('scroll', handleScroll, { passive: true });
+    }
     
     skillItems.forEach(item => {
         skillsObserver.observe(item);
