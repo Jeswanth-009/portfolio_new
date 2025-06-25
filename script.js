@@ -326,15 +326,14 @@ function initializeScrollEffects() {
 
 // Scroll progress indicator
 function createScrollProgressIndicator() {
-    const progressBar = document.createElement('div');
-    progressBar.className = 'fixed top-0 left-0 w-full h-1 bg-indigo-600 z-50 transform scale-x-0 origin-left transition-transform duration-150';
-    progressBar.style.transformOrigin = 'left';
-    document.body.appendChild(progressBar);
+    const progressBar = document.getElementById('scroll-progress');
     
-    window.addEventListener('scroll', () => {
-        const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-        progressBar.style.transform = `scaleX(${scrollPercent / 100})`;
-    });
+    if (progressBar) {
+        window.addEventListener('scroll', () => {
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            progressBar.style.width = Math.min(100, Math.max(0, scrollPercent)) + '%';
+        }, { passive: true });
+    }
 }
 
 // Active navigation highlighting
