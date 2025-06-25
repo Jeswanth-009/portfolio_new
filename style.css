@@ -903,11 +903,11 @@ video {
 .z-10 {
   z-index: 10;
 }
-.z-40 {
-  z-index: 40;
-}
 .z-50 {
   z-index: 50;
+}
+.z-\[9998\] {
+  z-index: 9998;
 }
 .mx-auto {
   margin-left: auto;
@@ -1805,6 +1805,51 @@ video {
 
 /* Custom Font Import */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Navigation Styles */
+nav {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 9999 !important;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Mobile navigation fixes */
+@media (max-width: 768px) {
+  nav {
+    position: fixed !important;
+    top: 0 !important;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+  }
+
+  /* Ensure mobile menu doesn't interfere */
+  #mobileMenu {
+    position: fixed !important;
+    top: 64px !important; /* Height of nav bar */
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 9998 !important;
+  }
+}
+
+/* iOS Safari fixes for fixed positioning */
+@supports (-webkit-touch-callout: none) {
+  nav {
+    position: fixed !important;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Prevent body scroll affecting navigation */
+body {
+  position: relative;
+  min-height: 100vh;
+}
 
 @keyframes pulse-glow {
   0%, 100% {
