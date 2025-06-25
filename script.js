@@ -329,10 +329,26 @@ function createScrollProgressIndicator() {
     const progressBar = document.getElementById('scroll-progress');
     
     if (progressBar) {
-        window.addEventListener('scroll', () => {
+        // Ensure the progress bar is always visible
+        progressBar.style.position = 'fixed';
+        progressBar.style.top = '0';
+        progressBar.style.left = '0';
+        progressBar.style.right = '0';
+        progressBar.style.zIndex = '99999';
+        
+        const updateProgress = () => {
             const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-            progressBar.style.width = Math.min(100, Math.max(0, scrollPercent)) + '%';
-        }, { passive: true });
+            const clampedPercent = Math.min(100, Math.max(0, scrollPercent));
+            progressBar.style.width = clampedPercent + '%';
+        };
+        
+        // Add multiple event listeners for better mobile support
+        window.addEventListener('scroll', updateProgress, { passive: true });
+        window.addEventListener('touchmove', updateProgress, { passive: true });
+        window.addEventListener('resize', updateProgress, { passive: true });
+        
+        // Initial update
+        updateProgress();
     }
 }
 

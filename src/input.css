@@ -467,35 +467,48 @@ nav {
 body {
   position: relative;
   min-height: 100vh;
-}
-
-/* Scroll Progress Bar */
-#scroll-progress {
-  height: 2px;
-  background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
-  box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
-  transition: width 0.1s ease-out;
-  z-index: 9999;
-}
-
-/* Ensure progress bar is visible on mobile */
-@media (max-width: 768px) {
-  #scroll-progress {
-    height: 3px;
-    box-shadow: 0 0 8px rgba(99, 102, 241, 0.6);
-  }
-}
-
-/* iOS Safari specific fixes */
-@supports (-webkit-touch-callout: none) {
+}  /* Scroll Progress Bar */
   #scroll-progress {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 9999;
+    height: 2px;
+    background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+    transition: width 0.1s ease-out;
+    z-index: 99999;
+    pointer-events: none;
   }
-}
+  
+  /* Ensure progress bar is visible on mobile */
+  @media (max-width: 768px) {
+    #scroll-progress {
+      height: 3px;
+      box-shadow: 0 0 8px rgba(99, 102, 241, 0.6);
+    }
+  }
+  
+  /* iOS Safari specific fixes */
+  @supports (-webkit-touch-callout: none) {
+    #scroll-progress {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      z-index: 99999 !important;
+    }
+  }
+  
+  /* Android Chrome specific fixes */
+  @media screen and (max-width: 768px) {
+    #scroll-progress {
+      position: fixed !important;
+      z-index: 99999 !important;
+      transform: translateZ(0);
+      will-change: width;
+    }
+  }
 
 @keyframes pulse-glow {
   0%, 100% {
