@@ -1,5 +1,21 @@
 // Professional Portfolio JavaScript
 
+// Vercel Analytics - Initialize
+if (typeof window !== 'undefined' && window.va) {
+    // Track page view
+    window.va('pageview');
+    
+    // Track custom events for portfolio interactions
+    function trackEvent(name, properties = {}) {
+        if (window.va) {
+            window.va('event', name, properties);
+        }
+    }
+    
+    // Make trackEvent available globally
+    window.trackEvent = trackEvent;
+}
+
 // DOM Content Loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize Lucide icons
@@ -15,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializePerformanceOptimizations();
     initializeModalFunctionality();
     initializeSkillsAnimation();
+    initializeAnalyticsTracking();
 });
 
 // Navigation Functionality
@@ -519,6 +536,14 @@ function monitorPerformance() {
 let scrollPosition = 0;
 
 function openProjectsModal() {
+    // Track analytics event
+    if (window.trackEvent) {
+        window.trackEvent('projects_modal_opened', {
+            section: 'projects',
+            action: 'view_all_projects'
+        });
+    }
+    
     const modal = document.getElementById('projectsModal');
     if (modal) {
         // Store current scroll position
@@ -623,3 +648,96 @@ function initializeModalFunctionality() {
 
 // Initialize performance monitoring
 monitorPerformance();
+
+// Analytics Tracking Function
+function initializeAnalyticsTracking() {
+    // Track external link clicks
+    document.querySelectorAll('a[href^="http"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            if (window.trackEvent) {
+                const href = this.href;
+                const text = this.textContent.trim();
+                
+                // Determine link type
+                let linkType = 'external';
+                if (href.includes('github.com')) {
+                    linkType = 'github';
+                } else if (href.includes('linkedin.com')) {
+                    linkType = 'linkedin';
+                } else if (href.includes('vercel.app') || href.includes('streamlit.app')) {
+                    linkType = 'project_demo';
+                } else if (href.includes('credly.com') || href.includes('kaggle.com') || href.includes('hackerrank.com')) {
+                    linkType = 'certificate';
+                }
+                
+                window.trackEvent('external_link_clicked', {
+                    link_type: linkType,
+                    link_text: text,
+                    link_url: href,
+                    section: getLinkSection(this)
+                });
+            }
+        });
+    });
+    
+    // Track navigation clicks
+    document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            if (window.trackEvent) {
+                const section = this.href.split('#')[1];
+                window.trackEvent('navigation_clicked', {
+                    section: section,
+                    link_text: this.textContent.trim()
+                });
+            }
+        });
+    });
+    
+    // Track contact form interactions
+    const contactForm = document.querySelector('form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            if (window.trackEvent) {
+                window.trackEvent('contact_form_submitted', {
+                    section: 'contact'
+                });
+            }
+        });
+    }
+    
+    // Track scroll depth
+    let maxScrollDepth = 0;
+    window.addEventListener('scroll', throttle(function() {
+        const scrollDepth = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+        if (scrollDepth > maxScrollDepth && scrollDepth % 25 === 0) {
+            maxScrollDepth = scrollDepth;
+            if (window.trackEvent) {
+                window.trackEvent('scroll_depth', {
+                    depth_percentage: scrollDepth
+                });
+            }
+        }
+    }, 1000));
+}
+
+// Helper function to determine which section a link belongs to
+function getLinkSection(linkElement) {
+    const section = linkElement.closest('section');
+    if (section) {
+        return section.id || section.className.split(' ')[0];
+    }
+    return 'header';
+}
+
+// Throttle function for scroll events
+function throttle(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}

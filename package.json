@@ -23,5 +23,8 @@
   ],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "commonjs",
+  "dependencies": {
+    "@vercel/analytics": "^1.5.0"
+  }
 }
