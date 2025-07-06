@@ -79,7 +79,7 @@
                     <!-- Profile Image -->
                     <div class="w-48 h-48 rounded-2xl overflow-hidden bg-slate-800">
                         <img src="./profile_pic.png" 
-                             alt="Profile" class="w-full h-full object-cover object-top">
+                             alt="Profile" class="w-full h-full object-cover object-top filter grayscale hover:filter hover:grayscale-0 transition-all duration-500 ease-in-out transform hover:scale-105">
                     </div>
 
                     <!-- Info Cards -->
@@ -439,17 +439,31 @@
                             </div>
                             
                             <div class="space-y-6">
-                                <!-- React.js -->
+                                <!-- C -->
                                 <div class="skill-item">
                                     <div class="flex justify-between items-center mb-2">
                                         <span class="text-white font-medium flex items-center gap-2">
-                                            <i data-lucide="cpu" class="w-4 h-4 text-indigo-400"></i>
-                                            React.js
+                                            <i data-lucide="cpu" class="w-4 h-4 text-red-400"></i>
+                                            C
                                         </span>
-                                        <span class="text-indigo-400 font-semibold">90%</span>
+                                        <span class="text-red-400 font-semibold">85%</span>
                                     </div>
                                     <div class="w-full bg-slate-700 rounded-full h-3 overflow-hidden">
-                                        <div class="skill-bar bg-gradient-to-r from-indigo-500 to-indigo-600 h-3 rounded-full" data-width="90"></div>
+                                        <div class="skill-bar bg-gradient-to-r from-red-500 to-red-600 h-3 rounded-full" data-width="85"></div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Python -->
+                                <div class="skill-item">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="text-white font-medium flex items-center gap-2">
+                                            <i data-lucide="terminal" class="w-4 h-4 text-blue-400"></i>
+                                            Python
+                                        </span>
+                                        <span class="text-blue-400 font-semibold">90%</span>
+                                    </div>
+                                    <div class="w-full bg-slate-700 rounded-full h-3 overflow-hidden">
+                                        <div class="skill-bar bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full" data-width="90"></div>
                                     </div>
                                 </div>
                                 
@@ -467,6 +481,34 @@
                                     </div>
                                 </div>
                                 
+                                <!-- Flutter -->
+                                <div class="skill-item">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="text-white font-medium flex items-center gap-2">
+                                            <i data-lucide="smartphone" class="w-4 h-4 text-cyan-400"></i>
+                                            Flutter
+                                        </span>
+                                        <span class="text-cyan-400 font-semibold">80%</span>
+                                    </div>
+                                    <div class="w-full bg-slate-700 rounded-full h-3 overflow-hidden">
+                                        <div class="skill-bar bg-gradient-to-r from-cyan-500 to-cyan-600 h-3 rounded-full" data-width="80"></div>
+                                    </div>
+                                </div>
+                                
+                                <!-- React.js with Vite -->
+                                <div class="skill-item">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="text-white font-medium flex items-center gap-2">
+                                            <i data-lucide="layers" class="w-4 h-4 text-indigo-400"></i>
+                                            React.js + Vite
+                                        </span>
+                                        <span class="text-indigo-400 font-semibold">88%</span>
+                                    </div>
+                                    <div class="w-full bg-slate-700 rounded-full h-3 overflow-hidden">
+                                        <div class="skill-bar bg-gradient-to-r from-indigo-500 to-indigo-600 h-3 rounded-full" data-width="88"></div>
+                                    </div>
+                                </div>
+                                
                                 <!-- Node.js -->
                                 <div class="skill-item">
                                     <div class="flex justify-between items-center mb-2">
@@ -478,34 +520,6 @@
                                     </div>
                                     <div class="w-full bg-slate-700 rounded-full h-3 overflow-hidden">
                                         <div class="skill-bar bg-gradient-to-r from-green-500 to-green-600 h-3 rounded-full" data-width="85"></div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Python -->
-                                <div class="skill-item">
-                                    <div class="flex justify-between items-center mb-2">
-                                        <span class="text-white font-medium flex items-center gap-2">
-                                            <i data-lucide="terminal" class="w-4 h-4 text-blue-400"></i>
-                                            Python
-                                        </span>
-                                        <span class="text-blue-400 font-semibold">80%</span>
-                                    </div>
-                                    <div class="w-full bg-slate-700 rounded-full h-3 overflow-hidden">
-                                        <div class="skill-bar bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full" data-width="80"></div>
-                                    </div>
-                                </div>
-                                
-                                <!-- TypeScript -->
-                                <div class="skill-item">
-                                    <div class="flex justify-between items-center mb-2">
-                                        <span class="text-white font-medium flex items-center gap-2">
-                                            <i data-lucide="file-code" class="w-4 h-4 text-purple-400"></i>
-                                            TypeScript
-                                        </span>
-                                        <span class="text-purple-400 font-semibold">85%</span>
-                                    </div>
-                                    <div class="w-full bg-slate-700 rounded-full h-3 overflow-hidden">
-                                        <div class="skill-bar bg-gradient-to-r from-purple-500 to-purple-600 h-3 rounded-full" data-width="85"></div>
                                     </div>
                                 </div>
                             </div>
@@ -987,6 +1001,26 @@
                                     </div>
                                     <h3 class="cert-title">Build Real World AI Applications with Gemini and Imagen</h3>
                                     <p class="cert-subtitle">AI Application Development</p>
+                                    <div class="cert-footer">
+                                        <span class="cert-date">2025</span>
+                                        <i data-lucide="external-link" class="w-4 h-4 text-slate-400 group-hover:text-red-400 transition-colors"></i>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="https://www.credly.com/badges/56e28f44-6b0a-4a2c-8ce8-4d82201458e1/public_url" target="_blank" class="cert-card-premium google-hover">
+                                <div class="cert-header google-gradient">
+                                    <div class="cert-badge">
+                                        <i data-lucide="check-circle" class="w-5 h-5"></i>
+                                        <span>Verified</span>
+                                    </div>
+                                </div>
+                                <div class="cert-content">
+                                    <div class="cert-icon google-bg">
+                                        <i data-lucide="code-2" class="w-6 h-6 text-green-600"></i>
+                                    </div>
+                                    <h3 class="cert-title">Develop GenAI Apps with Gemini and Streamlit</h3>
+                                    <p class="cert-subtitle">AI App Development & Streamlit</p>
                                     <div class="cert-footer">
                                         <span class="cert-date">2025</span>
                                         <i data-lucide="external-link" class="w-4 h-4 text-slate-400 group-hover:text-red-400 transition-colors"></i>
